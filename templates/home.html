@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
+            {{sndmap.js}}
+    </head>
+       {% if error %}
+         <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+    <body>
+        <h1>CYBERSECURITY WEB APPLICATION</h1>
+        <form method="POST">
+    <input name="text">
+    <input type="submit">
+    </form>
+
+
+        <h3> My First Map generated in full view</h3>
+        {{sndmap.html}}
+
+
+    </body>
+</html>

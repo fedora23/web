@@ -1,0 +1,12 @@
+numpy == 1.13.1
+matplotlib == 2.0.0
+pandas == 0.20.3
+SQLAlchemy==1.1.9
+pygeoip==0.3.2
+Flask==0.12.2
+googlemaps==2.5.1
+Jinja2==2.9.6
+Werkzeug==0.12.2
+
+
+
