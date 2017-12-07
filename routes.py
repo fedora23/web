@@ -14,13 +14,13 @@ external_ip = urllib.request.urlopen('http://ident.me').read().decode('utf8')
 hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
-app = Flask(__name__)
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE"
-app.secret_key = 'AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE'
-GoogleMaps(app, key="AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE")
+application = Flask(__name__)
+application.config['GOOGLEMAPS_KEY'] = "AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE"
+application.secret_key = 'AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE'
+GoogleMaps(application, key="AIzaSyAYkWl0-rLmFkMvROv2FGBUlVS4OR387yE")
 
 
-@app.route("/")
+@application.route("/")
 def home():
     # creating a map in the view
     go = pygeoip.GeoIP('GeoLiteCity.dat')
@@ -51,7 +51,7 @@ def home():
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'CyberSecurity/raw_data')  ## this is the folder on my machine
 ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+applicationlication.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 def allowed_file(filename):
@@ -159,12 +159,12 @@ def DetectAttack(file, generated_file):
             f.write(info)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def map():
     if request.method == 'POST':
         doc = request.files['file']
         filename = secure_filename(doc.filename)
-        doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # saves the file in the machinealgorithm folder
+        doc.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))  # saves the file in the machinealgorithm folder
         file = generateCleanData('CyberSecurity/raw_data/' + filename)  # processes raw packet data and returns it's
         # stored location
         generated_file = "ipaddresslist.csv"
@@ -236,4 +236,4 @@ def map():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
